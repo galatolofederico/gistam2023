@@ -1,0 +1,12 @@
+defaults:
+  - config
+  - _self_
+
+data:
+  rasters: ${hydra:runtime.cwd}/data/data/IDAN
+
+  dataset:
+    training_perc: 0.8
+    full: ${hydra:runtime.cwd}/data/dataset-IDAN.json
+    train: ${hydra:runtime.cwd}/data/train-IDAN.json
+    test: ${hydra:runtime.cwd}/data/test-IDAN.json

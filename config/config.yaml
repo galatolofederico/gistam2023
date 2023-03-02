@@ -1,0 +1,77 @@
+
+data:
+  river: ${hydra:runtime.cwd}/data/data/river/river.tif
+  rasters: ${hydra:runtime.cwd}/data/data/IDAN
+  masks: ${hydra:runtime.cwd}/data/data/masks
+
+  clip:
+    mask:
+      min: 0
+      max: 1
+    raster_std: 2.5
+
+  dataset:
+    training_perc: 0.8
+    full: ${hydra:runtime.cwd}/data/dataset.json
+    train: ${hydra:runtime.cwd}/data/train.json
+    test: ${hydra:runtime.cwd}/data/test.json
+
+model:
+  dim: 8
+  dim_mults: [1, 2, 4]
+  num_blocks_per_stage: [2, 2, 2]
+  num_self_attn_per_stage: [0, 0, 1]
+  nested_unet_depths: [0, 0, 0]
+  nested_unet_dim: 16
+  channels: 1
+  use_convnext: False
+  resnet_groups: 2
+  consolidate_upsample_fmaps: True
+  weight_standardize: False
+  attn_heads: 2
+  attn_dim_head: 16
+  bce_weights: False
+
+train:
+  window_size: 128
+  batch_size: 32
+  lr: 0.001
+  steps: 20_000
+  seed: -1
+  gpus: 1
+  save_file: ${hydra:runtime.cwd}/model.pth
+
+test:
+  interval: 100
+  batch_size: 32
+  batches: 10
+
+wandb:
+  log: False
+  log_images_every:
+    train: 500
+    validation: 50
+  entity: mlpi
+  project: river-detection
+  tag: ""
+
+predict:
+  raster: ""
+  river: ""
+  model: ""
+  device: "cuda"
+  plot: False
+
+predict_folder:
+  folder: "" 
+  river: ""
+  model: ""
+  output: ""
+  device: "cuda"
+  plot: False
+
+evaluate:
+  model: ""
+  predictions: ""
+  device: "cuda"
+  batches: 1000

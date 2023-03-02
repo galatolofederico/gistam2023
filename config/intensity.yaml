@@ -1,0 +1,12 @@
+defaults:
+  - config
+  - _self_
+
+data:
+  rasters: ${hydra:runtime.cwd}/data/data/intensity
+
+  dataset:
+    training_perc: 0.8
+    full: ${hydra:runtime.cwd}/data/dataset-intensity.json
+    train: ${hydra:runtime.cwd}/data/train-intensity.json
+    test: ${hydra:runtime.cwd}/data/test-intensity.json

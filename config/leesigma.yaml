@@ -1,0 +1,12 @@
+defaults:
+  - config
+  - _self_
+
+data:
+  rasters: ${hydra:runtime.cwd}/data/data/leesigma
+
+  dataset:
+    training_perc: 0.8
+    full: ${hydra:runtime.cwd}/data/dataset-leesigma.json
+    train: ${hydra:runtime.cwd}/data/train-leesigma.json
+    test: ${hydra:runtime.cwd}/data/test-leesigma.json

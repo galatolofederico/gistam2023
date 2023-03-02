@@ -1,0 +1,13 @@
+/env
+__pycache__/
+
+/data
+/outputs
+/wandb
+/lightning_logs
+/results
+/trash
+/backups
+
+*.txt
+*.pth
